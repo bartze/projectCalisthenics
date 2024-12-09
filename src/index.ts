@@ -1,10 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
-// Asegúrate de que dotenv se carga primero
-dotenv.config();
-
 import {
   getAllExercises,
   getExercisesByBodyPart,
@@ -16,6 +12,8 @@ import {
   getExercisesByTarget,
   getExerciseByName
 } from './controllers/exercisesController';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
