@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Fuerza</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Ejercicios de Fuerza</h1>
+    <div id="exercises"></div>
+
+    <script>
+        // Hacer una solicitud a la API para obtener los ejercicios
+        fetch('/api/exercises')
+            .then(response => response.json())
+            .then(data => {
+                if (!Array.isArray(data)) {
+                    throw new Error('Unexpected response format');
+                }
+
+                const exercisesContainer = document.getElementById('exercises');
+
+                data.forEach(exercise => {
+                    const exerciseDiv = document.createElement('div');
+                    exerciseDiv.classList.add('exercise');
+
+                    const exerciseName = document.createElement('h2');
+                    exerciseName.textContent = exercise.name;
+
+                    const exerciseImage = document.createElement('img');
+                    exerciseImage.src = exercise.gifUrl;
+                    exerciseImage.alt = exercise.name;
+
+                    const exerciseBodyPart = document.createElement('p');
+                    exerciseBodyPart.textContent = `Parte del cuerpo: ${exercise.bodyPart}`;
+
+                    const exerciseEquipment = document.createElement('p');
+                    exerciseEquipment.textContent = `Equipo: ${exercise.equipment}`;
+
+                    exerciseDiv.appendChild(exerciseName);
+                    exerciseDiv.appendChild(exerciseImage);
+                    exerciseDiv.appendChild(exerciseBodyPart);
+                    exerciseDiv.appendChild(exerciseEquipment);
+
+                    exercisesContainer.appendChild(exerciseDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching exercises:', error));
+    </script>
+</body>
+
+</html>
