@@ -8,13 +8,13 @@ dotenv.config();
 import {
   getAllExercises,
   getExercisesByBodyPart,
-  // getExerciseById,
-  // getBodyPartList,
-  // getEquipmentList,
-  // getTargetList,
-  // getExercisesByEquipment,
-  // getExercisesByTarget,
-  // getExerciseByName
+  getExerciseById,
+  getBodyPartList,
+  getEquipmentList,
+  getTargetList,
+  getExercisesByEquipment,
+  getExercisesByTarget,
+  getExerciseByName
 } from './controllers/exercisesController';
 
 const app = express();
@@ -26,13 +26,13 @@ app.use(express.json());
 
 app.get('/api/exercises', getAllExercises);
 app.get('/api/exercises/bodyPart/:bodyPart', getExercisesByBodyPart);
-// app.get('/api/bodyPartList', getBodyPartList);
-// app.get('/api/equipmentList', getEquipmentList);
-// app.get('/api/targetList', getTargetList);
-// app.get('/api/exercises/equipment/:equipment', getExercisesByEquipment);
-// app.get('/api/exercises/target/:target', getExercisesByTarget);
-// app.get('/api/exercises/exercise/:id', getExerciseById);
-// app.get('/api/exercises/name/:name', getExerciseByName);
+app.get('/api/bodyPartList', getBodyPartList);
+app.get('/api/equipmentList', getEquipmentList);
+app.get('/api/targetList', getTargetList);
+app.get('/api/exercises/equipment/:equipment', getExercisesByEquipment);
+app.get('/api/exercises/target/:target', getExercisesByTarget);
+app.get('/api/exercises/exercise/:id', getExerciseById);
+app.get('/api/exercises/name/:name', getExerciseByName);
 
 app.listen(port, () => {
   console.log(`Servidor en ejecución en puerto ${port}`);
